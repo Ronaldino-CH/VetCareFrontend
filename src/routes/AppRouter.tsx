@@ -4,30 +4,35 @@ import ProtectedRoute from "../components/ProtectedRoute";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import UnauthorizedPage from "../pages/UnauthorizedPage";
-import ClientesListPage from "../pages/clientes/ClientesListPage";
-import ClientesCreatePage from "../pages/clientes/ClientesCreatePage";
-import ClientesEditPage from "../pages/clientes/ClientesEditPage";
-import MascotasListPage from "../pages/mascotas/MascotasListPage";
-import MascotasCreatePage from "../pages/mascotas/MascotasCreatePage";
-import MascotasEditPage from "../pages/mascotas/MascotasEditPage";
-import CitasListPage from "../pages/citas/CitasListPage";
-import CitasCreatePage from "../pages/citas/CitasCreatePage";
-import CitasEditPage from "../pages/citas/CitasEditPage";
-import CitasDetailPage from "../pages/citas/CitasDetailPage";
-import EstadoCitasListPage from "../pages/estadoCitas/EstadoCitasListPage";
-import EstadoCitasCreatePage from "../pages/estadoCitas/EstadoCitasCreatePage";
-import EstadoCitasEditPage from "../pages/estadoCitas/EstadoCitasEditPage";
-import RolesListPage from "../pages/roles/RolesListPage";
-import RolesCreatePage from "../pages/roles/RolesCreatePage";
-import RolesEditPage from "../pages/roles/RolesEditPage";
-import UsuariosListPage from "../pages/usuarios/UsuariosListPage";
-import UsuariosCreatePage from "../pages/usuarios/UsuariosCreatePage";
-import UsuariosEditPage from "../pages/usuarios/UsuariosEditPage";
-import HistorialClinicoListPage from "../pages/historialClinico/HistorialClinicoListPage";
-import HistorialClinicoCreatePage from "../pages/historialClinico/HistorialClinicoCreatePage";
-import HistorialClinicoEditPage from "../pages/historialClinico/HistorialClinicoEditPage";
-import HistorialClinicoDetailPage from "../pages/historialClinico/HistorialClinicoDetailPage";
-import ChatGeneralPage from "../pages/chatGeneral/ChatGeneralPage";
+import ClientesListPage from "../features/clientes/pages/ClientesListPage";
+import ClientesCreatePage from "../features/clientes/pages/ClientesCreatePage";
+import ClientesEditPage from "../features/clientes/pages/ClientesEditPage";
+import ClientesDetailPage from "../features/clientes/pages/ClientesDetailPage";
+import MascotasListPage from "../features/mascotas/pages/MascotasListPage";
+import MascotasCreatePage from "../features/mascotas/pages/MascotasCreatePage";
+import MascotasEditPage from "../features/mascotas/pages/MascotasEditPage";
+import MascotasDetailPage from "../features/mascotas/pages/MascotasDetailPage";
+import CitasListPage from "../features/citas/pages/CitasListPage";
+import CitasCreatePage from "../features/citas/pages/CitasCreatePage";
+import CitasEditPage from "../features/citas/pages/CitasEditPage";
+import CitasDetailPage from "../features/citas/pages/CitasDetailPage";
+import EstadoCitasListPage from "../features/estadoCitas/pages/EstadoCitasListPage";
+import EstadoCitasCreatePage from "../features/estadoCitas/pages/EstadoCitasCreatePage";
+import EstadoCitasEditPage from "../features/estadoCitas/pages/EstadoCitasEditPage";
+import EstadoCitasDetailPage from "../features/estadoCitas/pages/EstadoCitasDetailPage";
+import RolesListPage from "../features/roles/pages/RolesListPage";
+import RolesCreatePage from "../features/roles/pages/RolesCreatePage";
+import RolesEditPage from "../features/roles/pages/RolesEditPage";
+import RolesDetailPage from "../features/roles/pages/RolesDetailPage";
+import UsuariosListPage from "../features/usuarios/pages/UsuariosListPage";
+import UsuariosCreatePage from "../features/usuarios/pages/UsuariosCreatePage";
+import UsuariosEditPage from "../features/usuarios/pages/UsuariosEditPage";
+import UsuariosDetailPage from "../features/usuarios/pages/UsuariosDetailPage";
+import HistorialClinicoListPage from "../features/historialClinico/pages/HistorialClinicoListPage";
+import HistorialClinicoCreatePage from "../features/historialClinico/pages/HistorialClinicoCreatePage";
+import HistorialClinicoEditPage from "../features/historialClinico/pages/HistorialClinicoEditPage";
+import HistorialClinicoDetailPage from "../features/historialClinico/pages/HistorialClinicoDetailPage";
+import ChatGeneralPage from "../features/chatGeneral/pages/ChatGeneralPage";
 import { ROLE_IDS } from "../utils/constants";
 
 function AppRouter() {
@@ -74,6 +79,7 @@ function AppRouter() {
           }
         />
         <Route path="clientes/:id/editar" element={<ClientesEditPage />} />
+        <Route path="clientes/:id" element={<ClientesDetailPage />} />
 
         <Route path="mascotas" element={<MascotasListPage />} />
         <Route
@@ -85,6 +91,7 @@ function AppRouter() {
           }
         />
         <Route path="mascotas/:id/editar" element={<MascotasEditPage />} />
+        <Route path="mascotas/:id" element={<MascotasDetailPage />} />
 
         <Route path="citas" element={<CitasListPage />} />
         <Route path="citas/crear" element={<CitasCreatePage />} />
@@ -107,6 +114,7 @@ function AppRouter() {
             </ProtectedRoute>
           }
         />
+        <Route path="estado-citas/:id" element={<EstadoCitasDetailPage />} />
 
         <Route
           path="roles"
@@ -132,6 +140,14 @@ function AppRouter() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="roles/:id"
+          element={
+            <ProtectedRoute allowedRoles={[ROLE_IDS.ADMIN]}>
+              <RolesDetailPage />
+            </ProtectedRoute>
+          }
+        />
 
         <Route
           path="usuarios"
@@ -154,6 +170,14 @@ function AppRouter() {
           element={
             <ProtectedRoute allowedRoles={[ROLE_IDS.ADMIN]}>
               <UsuariosEditPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="usuarios/:id"
+          element={
+            <ProtectedRoute allowedRoles={[ROLE_IDS.ADMIN]}>
+              <UsuariosDetailPage />
             </ProtectedRoute>
           }
         />

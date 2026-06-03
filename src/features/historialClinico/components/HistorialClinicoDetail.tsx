@@ -1,0 +1,48 @@
+import { Link, useParams } from "react-router-dom";
+import { resolveFieldValue } from "../../../utils/format";
+import { useHistorialClinicoDetail } from "../hooks/useHistorialClinicoDetail";
+
+function fullName(entity) {
+  if (!entity) return "-";
+  const names = [resolveFieldValue(entity, "Nombres"), resolveFieldValue(entity, "Apellidos")]
+    .filter(Boolean)
+    .join(" ")
+    .trim();
+  return names || resolveFieldValue(entity, "UserName") || "-";
+}
+
+function HistorialClinicoDetail() {
+  const { id } = useParams();
+  const { detail, loading, error } = useHistorialClinicoDetail(id);
+
+  return (
+    <section className="floating-detail-page">
+      <article className="floating-detail-card">
+        <header className="floating-detail-head">
+          <h2>Historial Clinico</h2>
+          <h3>{resolveFieldValue(detail?.mascota, "Nombre") || "-"}</h3>
+        </header>
+
+        {loading ? <p>Cargando...</p> : null}
+        {error ? <p className="error">{error}</p> : null}
+
+        {!loading && !error && detail ? (
+          <div className="floating-detail-body">
+            <div><span>Dueño:</span><strong>{fullName(detail.duenio)}</strong></div>
+            <div><span>Veterinario:</span><strong>{fullName(detail.veterinario)}</strong></div>
+            <div><span>Diagnostico:</span><strong>{resolveFieldValue(detail.historial, "Diagnostico") || "-"}</strong></div>
+            <div><span>Tratamiento:</span><strong>{resolveFieldValue(detail.historial, "Tratamiento") || "-"}</strong></div>
+            <div><span>Observaciones:</span><strong>{resolveFieldValue(detail.historial, "Observaciones") || "-"}</strong></div>
+            <div><span>Fecha Creacion:</span><strong>{resolveFieldValue(detail.historial, "FechaCrea") || "-"}</strong></div>
+          </div>
+        ) : null}
+
+        <footer className="floating-detail-actions">
+          <Link className="secondary-btn" to="/historial-clinico">Volver</Link>
+        </footer>
+      </article>
+    </section>
+  );
+}
+
+export default HistorialClinicoDetail;

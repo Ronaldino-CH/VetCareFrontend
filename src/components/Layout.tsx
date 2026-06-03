@@ -4,7 +4,7 @@ import vetcareLogo from "../assets/vetcare.png";
 import { APP_NAME } from "../utils/constants";
 import { getModulesMenuByRole } from "../models/modulesConfig";
 import { useAuth } from "../hooks/useAuth";
-import { useChatGeneral } from "../hooks/useChatGeneral";
+import { useChatGeneral } from "../features/chatGeneral/hooks/useChatGeneral";
 
 const menuIcons = {
   home: "\uD83C\uDFE0",
