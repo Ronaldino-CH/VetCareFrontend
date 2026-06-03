@@ -27,6 +27,7 @@ import HistorialClinicoListPage from "../pages/historialClinico/HistorialClinico
 import HistorialClinicoCreatePage from "../pages/historialClinico/HistorialClinicoCreatePage";
 import HistorialClinicoEditPage from "../pages/historialClinico/HistorialClinicoEditPage";
 import HistorialClinicoDetailPage from "../pages/historialClinico/HistorialClinicoDetailPage";
+import ChatGeneralPage from "../pages/chatGeneral/ChatGeneralPage";
 import { ROLE_IDS } from "../utils/constants";
 
 function AppRouter() {
@@ -171,6 +172,15 @@ function AppRouter() {
           element={
             <ProtectedRoute allowedRoles={[ROLE_IDS.ADMIN, ROLE_IDS.VETERINARIO]}>
               <HistorialClinicoEditPage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="chat-general"
+          element={
+            <ProtectedRoute allowedRoles={[ROLE_IDS.ADMIN, ROLE_IDS.VETERINARIO, ROLE_IDS.RECEPCIONISTA]}>
+              <ChatGeneralPage />
             </ProtectedRoute>
           }
         />

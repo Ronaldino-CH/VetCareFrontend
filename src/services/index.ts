@@ -6,6 +6,7 @@ import rolesService from "./rolesService";
 import usuariosService from "./usuariosService";
 import historialClinicoService from "./historialClinicoService";
 import authService from "./authService";
+import chatGeneralService from "./chatGeneralService";
 
 export const moduleServices = {
   clientes: clientesService,
@@ -14,7 +15,8 @@ export const moduleServices = {
   estadoCitas: estadoCitasService,
   roles: rolesService,
   usuarios: usuariosService,
-  historialClinico: historialClinicoService
+  historialClinico: historialClinicoService,
+  chatGeneral: chatGeneralService
 };
 
-export { authService };
+export { authService, chatGeneralService };

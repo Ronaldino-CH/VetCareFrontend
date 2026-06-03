@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { AuthProvider } from "./hooks/useAuth";
+import { ChatGeneralProvider } from "./hooks/useChatGeneral";
 import "./styles.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -14,7 +15,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       }}
     >
       <AuthProvider>
-        <App />
+        <ChatGeneralProvider>
+          <App />
+        </ChatGeneralProvider>
       </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>
